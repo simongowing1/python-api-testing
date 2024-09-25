@@ -10,7 +10,7 @@ def test_total_users(api_client):
     assert response.status_code == 200, f"Test failed. Response status code is {response.status_code}: {response.text}"
 
     json_response = response.json()
-    assert 'total' in json_response, "Response JSON does not contain key: 'total'."
+    assert 'total' in json_response, "Test failed. Response JSON does not contain key: 'total'."
 
     total_users = json_response['total']
     assert total_users > 0, f"Test failed. The total number of users is zero."
