@@ -1,10 +1,6 @@
 import pytest
 from api_testing.utils.api_client import APIClient
 
-@pytest.fixture
-def api_client():
-    return APIClient()
-
 # correct login details from https://reqres.in/
 @pytest.fixture
 def correct_login_details():

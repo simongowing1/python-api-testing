@@ -2,10 +2,6 @@ import pytest
 from api_testing.utils.api_client import APIClient
 
 @pytest.fixture
-def api_client():
-    return APIClient()
-
-@pytest.fixture
 def dummy_user_details():
     return {
     "name": "morpheus",
