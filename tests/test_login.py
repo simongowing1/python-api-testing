@@ -24,7 +24,7 @@ def test_login_success_correct_details(api_client, correct_login_details):
     response = api_client.post("/api/login", correct_login_details)
     assert response.status_code == 200, f"Request failed with status code {response.status_code}: {response.text}"
 
-def test_login_success_incorrect_details(api_client, incorrect_login_details):
+def test_login_failure_incorrect_details(api_client, incorrect_login_details):
     response = api_client.post("/api/login", incorrect_login_details)
     assert response.status_code == 400, f"Request failed with status code {response.status_code}: {response.text}"
 
@@ -44,9 +44,17 @@ def test_login_failure_password_empty_string(api_client, correct_login_details):
     response = api_client.post("/api/login", {"email": correct_login_details["email"], "password": ""})
     assert response.status_code == 400, f"Request failed with status code {response.status_code}: {response.text}"
 
+def test_login_failure_email_and_password_empty_strings(api_client):
+    response = api_client.post("/api/login", {"email": "", "password": ""})
+    assert response.status_code == 400, f"Request failed with status code {response.status_code}: {response.text}"
+
 def test_login_failure_empty_body(api_client):
     response = api_client.post("/api/login", {})
     assert response.status_code == 400, f"Request failed with status code {response.status_code}: {response.text}"
+
+def test_login_failure_invalid_email(api_client, correct_login_details):
+    response = api_client.post("/api/login", {"email": "emailaddress", "password": correct_login_details['password']})
+    assert response.status_code == 400, f"Failed with status code {response.status_code}: {response.text}"
 
 # DOES NOT FAIL - INJECTION ATTACK PASSES AND TOKEN IS ISSUED
 def test_login_failure_injection_attack(api_client, correct_login_details):
