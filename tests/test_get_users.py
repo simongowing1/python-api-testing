@@ -11,5 +11,10 @@ def test_get_users(api_client):
 
 def test_total_users(api_client):
     response = api_client.get("/api/users")
-    total_users = response.json()['total']
-    assert total_users > 0, f"Test failed. There are no users."
+    assert response.status_code == 200, f"Request failed with status code {response.status_code}: {response.text}"
+
+    json_response = response.json()
+    assert 'total' in json_response, "Response JSON does not contain key: 'total'."
+
+    total_users = json_response['total']
+    assert total_users > 0, f"Test failed. There total number of users is zero."
