@@ -1,5 +1,5 @@
 import pytest
-from api_testing.utils.helper import assertion_error_message_standard
+from utils.helper import assertion_error_message_standard
 
 def test_get_users(api_client):
     response = api_client.get("/api/users")

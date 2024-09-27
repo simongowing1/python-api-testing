@@ -1,5 +1,5 @@
 import pytest
-from api_testing.utils.helper import assertion_error_message_standard
+from utils.helper import assertion_error_message_standard
 
 @pytest.fixture
 def dummy_user_details():

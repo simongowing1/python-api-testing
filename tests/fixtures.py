@@ -1,6 +1,6 @@
 import pytest
 
-from api_testing.utils.api_client import APIClient
+from utils.api_client import APIClient
 
 @pytest.fixture(scope='session')
 def api_client():

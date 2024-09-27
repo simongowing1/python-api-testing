@@ -1,5 +1,5 @@
 import pytest
-from api_testing.utils.helper import assertion_error_message_standard
+from utils.helper import assertion_error_message_standard
     
 def test_get_specific_user_success(api_client, user_fixture):
     id = user_fixture['data']['id']

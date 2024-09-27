@@ -1,5 +1,5 @@
 import pytest
-from api_testing.utils.helper import assertion_error_message_standard
+from utils.helper import assertion_error_message_standard
 
 def test_delete_specific_user_204(api_client, user_fixture):
     id = user_fixture['data']['id']
