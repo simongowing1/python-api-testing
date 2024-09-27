@@ -44,7 +44,7 @@ def test_login_failure_email_and_password_empty_strings(api_client):
     response = api_client.post("/api/login", {"email": "", "password": ""})
     assert response.status_code == 400, assertion_error_message_standard(response)
 
-def test_login_failure_empty_body(api_client):
+def test_login_failure_request_body_empty(api_client):
     response = api_client.post("/api/login", {})
     assert response.status_code == 400, assertion_error_message_standard(response)
 
