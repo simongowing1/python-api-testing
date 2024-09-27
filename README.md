@@ -1,12 +1,13 @@
 # SAS-SDET-python-interview
 
-# Simon Gowing's Solution:
+## Simon Gowing's Solution:
 
 - **Language**: [Python3](https://www.python.org/doc/)
 - **Tests**: [Pytest](https://docs.pytest.org/)
 - **Automation**: [GitHub Actions](https://docs.github.com/en/actions)
 
-# File Structure
+
+## File Structure
 
 | File(s)                                 | Description                                                                           |
 | --------------------------------------- | ------------------------------------------------------------------------------------- |
@@ -17,6 +18,7 @@
 | `/utils/api_client.py`                  | Contains APIClient class and all api request methods                                  |
 | `/utils/helper.py`                      | Contains helper functions such as `assertion_error_message_standard`                  |
 | `/requirements.txt`                     | Contains all python package requirements                                              |
+
 
 ## Configuration
 
@@ -41,12 +43,13 @@ pip install -r requirements.txt
 Run tests from the command line:
 
 ```bash
-pytest --no-header -v
+pytest --no-header -v -s
 ```
 
-# Tests
 
-1. Attempt to login via a POST request to https://reqres.in/api/login
+## Tests
+
+1. Attempt to login via a POST request to `https://reqres.in/api/login`:
 
 | Test                                    | Description                                                                           |
 | --------------------------------------- | ------------------------------------------------------------------------------------- |
@@ -61,12 +64,14 @@ pytest --no-header -v
 | `test_login_failure_invalid_email`| Verify a `400` response when incomplete data is provided: `email is invalid format`|
 | `test_login_failure_injection_attack`| Verify a `400` response when SQL injection attach is attempted|
 
-2. GET a list of users from the https://reqres.in/api/users endpoint
+
+2. GET a list of users from the `https://reqres.in/api/users` endpoint:
 
 | Test                                    | Description                                                                           |
 | --------------------------------------- | ------------------------------------------------------------------------------------- |
 | `test_get_users`    | Verify a `200` response when `/api/users` is requested from API                |
 | `test_total_users`  | Verify that number of users is greater than zero and print number of users             |
+
 
 3. GET information on a specific user
 
@@ -75,12 +80,14 @@ pytest --no-header -v
 | `test_get_specific_user_success`    | Verify a `200` response and `correctly structured JSON` is data returned for a specific, valid user                |
 | `test_get_specific_user_failure`  | Verify a `404` response when an `invalid user` is requested             |
 
-4. POST to https://reqres.in/api/users to create a new user
+
+4. POST to `https://reqres.in/api/users` to create a new user:
 
 | Test                                    | Description                                                                           |
 | --------------------------------------- | ------------------------------------------------------------------------------------- |
 | `test_create_user_success`    | Verify a `201` response is given with the `expected JSON attributes`                |
 | `test_create_user_failure_empty_body`  | Verify that number of users is greater than zero and print number of users             |
+
 
 5. DELETE a user
 
@@ -88,8 +95,17 @@ pytest --no-header -v
 | --------------------------------------- | ------------------------------------------------------------------------------------- |
 | `test_delete_specific_user_204`    | Verify a `204` response with `no body`                |
 
+
 ## Notes:
 
+**Recommendations:**
+
+The following tests are defying their assertions and failing, requiring improvements in the API.
+
+| Test                                    | Description                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| `test_login_failure_injection_attack`    | Allows an SQL injection attack to happen, granting `200` response and issuing an access token                 |
+| `test_create_user_failure_empty_body`    | Allows a user to be created with no content: `{"id":"193","createdAt":"2024-09-27T11:29:17.667Z"}`                |
 
 
 # Scenario:
