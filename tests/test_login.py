@@ -55,4 +55,4 @@ def test_login_failure_invalid_email(api_client, correct_login_details):
 # DOES NOT FAIL - INJECTION ATTACK PASSES AND TOKEN IS ISSUED
 def test_login_failure_injection_attack(api_client, correct_login_details):
     response = api_client.post("/api/login", {"email": correct_login_details["email"], "password": "' OR '1'='1"})
-    assert response.status_code == 400, assertion_error_message_standard(response)
+    assert response.status_code == 400, f"\n[INFO] Injection Attack successful! \n[INFO] Status Code: {response.status_code}\n[INFO] Response: {response.text}"

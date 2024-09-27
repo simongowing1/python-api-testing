@@ -15,4 +15,4 @@ def test_total_users(api_client):
     total_users = json_response['total']
     assert total_users > 0, f"Test failed. The total number of users is zero."
 
-    print(f"Total users: {json_response['total']}")
+    print(f"\n[INFO] Total users: {json_response['total']}")

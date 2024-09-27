@@ -19,10 +19,12 @@ def test_create_user_success(api_client, dummy_user_details):
     assert 'job' in json_response, "Test failed. Response JSON does not contain key: 'job'."
     assert json_response['job'] == dummy_user_details['job'], f"Test failed. Response does not match expected value for 'job'"
    
-    print("New user response:", json_response)
+    print("\n[INFO] New user response:")
+    print("[INFO]", json_response)
 
 # FAILS - CREATES USER WITH JUST "ID" AND "CREATEDATE"
 def test_create_user_failure_empty_body(api_client):
     response = api_client.post("/api/users", {})
     assert response.status_code == 400, assertion_error_message_standard(response)
-    print("New user response:", response.json())
+    print("\n[INFO] New user response:")
+    print("[INFO]", json_response)
