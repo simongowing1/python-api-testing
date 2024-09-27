@@ -7,9 +7,9 @@ def test_get_specific_user_success(api_client, user_fixture):
     assert response.status_code == 200, assertion_error_message_standard(response)
 
     json_response = response.json()
-    assert isinstance(json_response, dict), f"Response JSON is not of type: 'dictionary'."
+    assert isinstance(json_response, dict), "Test failed. Response JSON is not of type: 'dictionary'."
 
-    assert json_response == user_fixture
+    assert json_response == user_fixture, "Test failed. Response JSON does not match the expected user JSON"
 
 def test_get_specific_user_failure(api_client, user_fixture):
     response = api_client.get("/api/users/foo")

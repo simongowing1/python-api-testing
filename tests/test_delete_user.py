@@ -6,4 +6,4 @@ def test_delete_specific_user_204(api_client, user_fixture):
     response = api_client.delete(f"/api/users/{id}")
     assert response.status_code == 204, assertion_error_message_standard(response)
 
-    assert response.text == ''
+    assert response.text == '', 'Test failed. Request does not return response with no body'
