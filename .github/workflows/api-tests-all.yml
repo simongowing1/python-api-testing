@@ -1,5 +1,5 @@
 name: Run all tests
-run-name: ${{ github.actor }} is running all api tests on ${{ github.ref }} branch
+run-name: ${{ github.actor }} is running all api tests on ${{ github.ref_name }} branch
 on:
   push:
     branches:
