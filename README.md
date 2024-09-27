@@ -1,5 +1,97 @@
 # SAS-SDET-python-interview
 
+# Simon Gowing's Solution:
+
+- **Language**: [Python3](https://www.python.org/doc/)
+- **Tests**: [Pytest](https://docs.pytest.org/)
+- **Automation**: [GitHub Actions](https://docs.github.com/en/actions)
+
+# File Structure
+
+| File(s)                                 | Description                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| `/.github/workflows`                    | Contains GitHub Action workflow yml script/s                                          |
+| `/tests/test_*`                         | Contains all files containing tests (prefixed 'test_')                                |
+| `/tests/fixtures.py`                    | Contains all fixtures for tests                                                       |
+| `/tests/conftest.py`                    | Exports fixtures - must be updated when new fixture is added to `/fixtures`           |
+| `/utils/api_client.py`                  | Contains APIClient class and all api request methods                                  |
+| `/utils/helper.py`                      | Contains helper functions such as `assertion_error_message_standard`                  |
+| `/requirements.txt`                     | Contains all python package requirements                                              |
+
+## Configuration
+
+Create virtual environment (venv):
+
+```bash
+python3 -m venv venv
+```
+
+Activate venv:
+
+```bash
+source venv/bin/activate
+```
+
+Install all necessary packages according to `requirements.txy`:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run tests from the command line:
+
+```bash
+pytest --no-header -v
+```
+
+# Tests
+
+1. Attempt to login via a POST request to https://reqres.in/api/login
+
+| Test                                    | Description                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| `test_login_success_correct_details`    | Verify a `200` response when the `correct data` is provided to the API                |
+| `test_login_failure_incorrect_details`  | Verify a `400` response when the `incorrect data` is provided to the API              |
+| `test_login_failure_password_null`      | Verify a `400` response when incomplete data is provided: `password is null`          |
+| `test_login_failure_email_null`         | Verify a `400` response when incomplete data is provided: `email is null`             |
+| `test_login_failure_email_empty_string` | Verify a `400` response when incomplete data is provided: `email is empty string`     |
+| `test_login_failure_password_empty_string`| Verify a `400` response when incomplete data is provided: `password is empty string`|
+| `test_login_failure_email_and_password_empty_strings`| Verify a `400` response when incomplete data is provided: `email and password are empty strings`|
+| `test_login_failure_request_body_empty`| Verify a `400` response when incomplete data is provided: `request body is empty`|
+| `test_login_failure_invalid_email`| Verify a `400` response when incomplete data is provided: `email is invalid format`|
+| `test_login_failure_injection_attack`| Verify a `400` response when SQL injection attach is attempted|
+
+2. GET a list of users from the https://reqres.in/api/users endpoint
+
+| Test                                    | Description                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| `test_get_users`    | Verify a `200` response when `/api/users` is requested from API                |
+| `test_total_users`  | Verify that number of users is greater than zero and print number of users             |
+
+3. GET information on a specific user
+
+| Test                                    | Description                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| `test_get_specific_user_success`    | Verify a `200` response and `correctly structured JSON` is data returned for a specific, valid user                |
+| `test_get_specific_user_failure`  | Verify a `404` response when an `invalid user` is requested             |
+
+4. POST to https://reqres.in/api/users to create a new user
+
+| Test                                    | Description                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| `test_create_user_success`    | Verify a `201` response is given with the `expected JSON attributes`                |
+| `test_create_user_failure_empty_body`  | Verify that number of users is greater than zero and print number of users             |
+
+5. DELETE a user
+
+| Test                                    | Description                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| `test_delete_specific_user_204`    | Verify a `204` response with `no body`                |
+
+## Notes:
+
+
+
 # Scenario:
 
 Your company's development team has created some new APIs that need to be tested. Your manager wants these tests automated so they can be executed daily. You can also do manual testing of these APIs if you would like. Your automated test script should report on the pass/fail status of each test.
