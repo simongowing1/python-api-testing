@@ -34,7 +34,7 @@ Activate venv:
 source venv/bin/activate
 ```
 
-Install all necessary packages according to `requirements.txy`:
+Install all necessary packages according to `requirements.txt`:
 
 ```bash
 pip install -r requirements.txt
